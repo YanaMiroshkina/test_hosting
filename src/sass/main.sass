@@ -27,7 +27,10 @@
 
 /* == ДОПОЛНИТЕЛЬНЫЕ СТИЛИ == */
 
-
+$white: #fff
+$grey: #333
+$radius: 8px
+$shift_triangle: 10.6%
 
 .cf
   display: table
@@ -46,22 +49,24 @@ body
 
 .dots
   position: fixed
-  top: 50%
-  right: 0
-  width: 30px
+  top: 46%
+  right: 28px
+  transform: translateY(-50%)
   z-index: 10
 
 .dot
   display: block
-  width: 15px
-  height: 15px
-  background-color: #fff
-  border: 1px solid #333
+  width: 11px
+  height: 11px
+  background-color: $white
+  border: 1px solid $grey
   border-radius: 50%
   cursor: pointer
   &.active
-    background-color: #333
-    border-color: #fff
+    background-color: $grey
+    border-color: $white
+  &:not(:first-child)
+    margin-top: 16px
 
 .slides
   position: relative
@@ -71,78 +76,428 @@ body
 
 .slide
   width: 100%
-  min-height: 100%
-  color: #fff
+  color: $white
   background-size: cover
   &--1
+    background-color: #143a8b
     background-image: url('../img/background1.jpg')
     background-position: bottom center
   &--2
-    color: #333
+    color: $grey
   &--2 &__cta
-    color: #fff
+    color: $white
   &--3
+    background-color: #143a8b
     background-image: url('../img/background2.jpg')
     background-position: top center
 
+  &__content
+    margin: 0 auto
+    width: 90%
+    max-width: 1092px
+    min-width: 819px
+  &--1 &__content
+    padding-top: 26px 
+    padding-bottom: 60px 
+  &--2 &__content
+    padding-top: 27px 
+    padding-bottom: 85px 
+  &--3 &__content
+    padding-top: 27px 
+    padding-bottom: 51px 
+
   &__logo
-    font-size: 16px
+    position: absolute
+    font-size: 12px
+    letter-spacing: 1.3px
     text-transform: uppercase
+    span
+      position: relative
+      top: -2px
+      margin-left: 10px
 
   &__till-date
+    margin-top: 7px
+    margin-left: 3px
     font-size: 12px
+    letter-spacing: 2.1px
+    text-transform: uppercase
+    text-align: center
 
   &__preheader
+    margin-top: 66px
     font-family: 'pt-sans-b'
     font-size: 35px
+    text-align: center
 
   &__header
     font-family: 'pt-sans-caption-b'
-  h1.slide__header
+    text-align: center
+  &--1 &__header
+    margin-top: 106px
     font-size: 80px
-  h2.slide__header
+    line-height: 1em
+    span
+      letter-spacing: -1.4px
+  &--2 &__header
+    margin-top: 66px
     font-size: 35px
-  h3.slide__header
+    letter-spacing: -2.6px
+  &--3 &__header
+    margin-top: 83px
     font-size: 50px
+    line-height: 1.2em
 
   &__cta
-    display: inline-block
-    padding: 10px 20px
+    position: relative
+    left: 50%
+    width: 264px
+    height: 54px
     font-family: 'pt-sans-b'
     font-size: 24px
+    letter-spacing: -0.1px
+    line-height: 53px
+    text-align: center
     background-color: #77b53c
+    border-radius: $radius
+    transform: translateX(-50%)
+  &--1 &__cta
+    margin-top: 35px
+  &--2 &__cta
+    margin-top: 39px
+  &--3 &__cta
+    margin-top: 43px
 
-  &__copywrite
+  &__arrow
+    position: relative
+    margin-top: 137px
+    left: 50%
+    width: 30px
+    height: 52px
+    background-image: url('../img/down.png')
+    background-size: contain
+    background-repeat: no-repeat
+    border-top: 1px solid transparent
+    transform: translateX(-50%)
+    cursor: pointer
+    
+  &__copyright
+    margin-top: 47px
     font-size: 14px
+    a
+      border-bottom: 1px solid $white
 
 .domain
+  position: relative
+  margin: 64px auto 0
+  width: 724px
+  font-size: 24px
   &__input
-    font-style: 24px
+    position: relative
+    display: block
+    padding-left: 5%
+    padding-right: 190px
+    width: 100%
+    height: 80px
+    font-size: 1em
+    letter-spacing: -0.6px
+    background-color: $white
+    border-radius: $radius
+    border: none
+    z-index: 1
   &__submit
-    font-size: 22px
-    color: #fff
+    position: absolute
+    top: 15px
+    right: 16px
+    padding: 12px 26px 12px 25px
+    font-size: 0.92em
+    letter-spacing: -0.8px
+    color: $white
     background-color: #5f6062
+    border-radius: $radius
+    z-index: 1
   &__info
-    font-size: 16px
+    margin-top: -10px
+    padding: 22px 10px 13px
+    font-size: 0.67em
+    letter-spacing: 0.5px
+    text-align: center
+    background-color: transparentize($grey, 0.1)
+    border-radius: $radius
   &__buy
     color: #77b53c
     text-decoration: underline
 
+.benefits
+  margin-top: 77px
+  width: 100%
+
 .benefit
+  float: left
+  margin-bottom: 34px
+  width: 25%
+  &:nth-child(5)
+    clear: both
+  &__icon
+    display: block
+    margin: 0 auto
+    cursor: pointer
   &__title
+    margin-top: 16px
+    height: 54px
     font-size: 20px
+    text-align: center
+    cursor: pointer
+  &__text
+    position: relative
+    padding: 21px 43px
+    line-height: 1.3em
+    background-color: #f7f7f7
+    border-radius: $radius - 2
+    z-index: 1
   &__description
+    display: none
+    position: relative
+    margin-top: 23px
+    width: 400%
     font-size: 16px
+    background-color: #f7f7f7
+    border: 1px solid #afafb0
+    border-radius: $radius - 2
+    z-index: 1
+    &:before,
+    &:after
+      position: absolute
+      top: -8px
+      left: $shift_triangle
+      display: block
+      content: ''
+      width: 30px
+      height: 30px
+      background-color: #f7f7f7
+      transform: rotate(45deg)
+    &:before
+      top: -10px
+      border: 1px solid #afafb0
+
+  &:nth-child(4n + 2) &__description
+    left: -100%
+    &:before,
+    &:after
+      left: 25% + $shift_triangle
+
+  &:nth-child(4n + 3) &__description
+    left: -200%
+    &:before,
+    &:after
+      left: 50% +  $shift_triangle
+
+  &:nth-child(4n + 4) &__description
+    left: -300%
+    &:before,
+    &:after
+      left: 75% +  $shift_triangle
 
 .offer
-  font-size: 22px
+  margin-top: 54px
+  padding: 20px 34px 22px 40px
+  width: 100%
+  background-color: #df4a5e
+  border-radius: $radius
+  table
+    vertical-align: center
+    width: 100%
+    height: 100%
+    td:first-child
+      border-right: 1px solid transparentize($white, 0.8)
+
+  &__text
+    position: relative
+    width: 80.4%
+    font-size: 22px
+    line-height: 1.2em
   b 
     font-family: 'pt-sans-b'
   &__link
-    border-bottom: 1px solid #fff
+    border-bottom: 1px solid $white
   &__points
+    width: 19.6%
     font-family: 'pt-sans-caption-b'
     font-size: 50px
+    letter-spacing: 3px
+    text-align: right
+  &__plus
+    float: right
+    display: inline-block
+    margin-top: -5px
+    margin-left: 6px
+
+
+/* ======== RETINA ======== */
+
+@media (-webkit-min-device-pixel-ratio: 2) 
+  .slide__arrow
+    background-image: url('../img/down@2x.png')
+
+
+/* ======== SMALL SCREEN ======== */
+
+@media (max-width: 1149px)
+
+  .slide
+
+    &__preheader
+      font-size: 25px
+
+    &--1 &__header
+      font-size: 50px
+    &--2 &__header
+      font-size: 35px
+    &--3 &__header
+      font-size: 38px
+
+    &__cta
+      width: 250px
+      height: 50px
+      font-size: 18px
+      line-height: 50px
+
+    &__copyright
+      font-size: 10px
+
+  .domain
+    font-size: 20px
+    &__input
+      padding-right: 170px
+      height: 66px
+    &__submit
+      top: 10px
+
+  .benefit
+    &__title
+      font-size: 18px
+
+  .offer
+    &__text
+      font-size: 17px
+    &__points
+      font-size: 37px
+      letter-spacing: 1.5px
+    &__plus
+      margin-top: 0
+      svg
+        width: 25px
+
+
+/* ======== TABLET ======== */
+
+@media (max-width: 858px)
+
+  .dots
+    display: none
+
+  .slide
+
+    &__content
+      min-width: 94%
+    &--2 &__content
+      padding-bottom: 65px
+    &--3 &__content
+      padding-bottom: 25px
+
+    &__logo
+      font-size: 10px
+      svg
+        width: 55px
+      span
+        top: -5px
+        margin-left: 8px
+
+    &__till-date
+      margin-top: 32px
+      letter-spacing: 1.1px
+
+    &__preheader
+      font-size: 15px
+    
+    &--1 &__header
+      margin-top: 86px
+      font-size: 27px
+      span
+        letter-spacing: 0
+    &--2 &__header
+      padding: 0 20px
+      font-size: 20px
+      letter-spacing: -0.3px
+    &--3 &__header
+      margin-top: 60px
+      font-size: 16px
+
+    &__cta
+      width: 206px
+      height: 43px
+      font-size: 17px
+      line-height: 43px
+    &--2 &__cta
+      margin-top: 13px
+
+    &__copyright
+      margin-top: 37px
+
+  .domain
+    width: 100%
+    max-width: 500px
+    font-size: 16px
+    &__input
+      padding-right: 119px
+      height: 50px
+    &__submit
+      top: 6px
+      right: 6px
+      padding: 10px 19px
+    &__info
+      letter-spacing: 0
+
+  .benefits
+    margin-top: 50px
+
+  .benefit
+    float: none
+    width: 100%
+    &__title
+      height: auto
+      font-size: 17px
+    &__description
+      display: block
+      left: 0!important
+      margin: 23px auto 0
+      width: 100%
+      max-width: 500px
+      &:before,
+      &:after
+        display: none
+    &__text
+      padding: 16px 20px 20px
+
+  .offer
+    position: relative
+    padding: 12px 17px 14px
+    &__text
+      padding-right: 10px
+      width: auto
+      font-size: 12px
+    &__points
+      width: auto
+      min-width: 87px
+      font-size: 22px
+      letter-spacing: -0.8px
+    &__plus
+      margin-top: 0
+      margin-left: 4px
+      svg
+        width: 15px
+
+
 
 
 
