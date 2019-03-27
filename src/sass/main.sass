@@ -30,7 +30,7 @@
 $white: #fff
 $grey: #333
 $radius: 8px
-$shift_triangle: 10.6%
+$shift_triangle: 10.7%
 
 .cf
   display: table
@@ -61,6 +61,7 @@ body
   background-color: $white
   border: 1px solid $grey
   border-radius: 50%
+  transition: all 0.15s
   cursor: pointer
   &.active
     background-color: $grey
@@ -139,6 +140,8 @@ body
     line-height: 1em
     span
       letter-spacing: -1.4px
+    .rub
+      margin-left: 7px
   &--2 &__header
     margin-top: 66px
     font-size: 35px
@@ -161,10 +164,14 @@ body
     background-color: #77b53c
     border-radius: $radius
     transform: translateX(-50%)
+    transition: background 0.2s
+    cursor: pointer
+    &:hover
+      background-color: #7cc13c
   &--1 &__cta
     margin-top: 35px
   &--2 &__cta
-    margin-top: 39px
+    margin-top: 4px
   &--3 &__cta
     margin-top: 43px
 
@@ -215,7 +222,10 @@ body
     color: $white
     background-color: #5f6062
     border-radius: $radius
+    transition: background 0.2s
     z-index: 1
+    &:hover
+      background-color: #515252
   &__info
     margin-top: -10px
     padding: 22px 10px 13px
@@ -224,9 +234,17 @@ body
     text-align: center
     background-color: transparentize($grey, 0.1)
     border-radius: $radius
+    transform: translateY(-50px)
+    transition: transform 0.2s
+    &.visible
+      transform: none
   &__buy
     color: #77b53c
     text-decoration: underline
+    &:before
+      display: inline-block
+      content: ''
+      width: 0.3em
 
 .benefits
   margin-top: 77px
@@ -238,64 +256,68 @@ body
   width: 25%
   &:nth-child(5)
     clear: both
+  &__caption
+    cursor: pointer
   &__icon
     display: block
     margin: 0 auto
-    cursor: pointer
   &__title
     margin-top: 16px
     height: 54px
     font-size: 20px
     text-align: center
-    cursor: pointer
-  &__text
-    position: relative
-    padding: 21px 43px
-    line-height: 1.3em
-    background-color: #f7f7f7
-    border-radius: $radius - 2
-    z-index: 1
   &__description
-    display: none
     position: relative
-    margin-top: 23px
     width: 400%
-    font-size: 16px
+    height: auto
+    max-height: 0px
+    overflow: hidden
+
+  &__text
+    margin-top: 23px
     background-color: #f7f7f7
     border: 1px solid #afafb0
-    border-radius: $radius - 2
-    z-index: 1
-    &:before,
-    &:after
+    border-radius: $radius
+
+    div
+      position: relative
+      padding: 21px 43px
+      font-size: 16px
+      line-height: 1.3em
+      background-color: #f7f7f7
+      border-radius: $radius
+      z-index: 1
+
+    /* треугольники */
+    &:before
       position: absolute
-      top: -8px
+      top: 15px
       left: $shift_triangle
       display: block
       content: ''
       width: 30px
       height: 30px
       background-color: #f7f7f7
-      transform: rotate(45deg)
-    &:before
-      top: -10px
       border: 1px solid #afafb0
+      transform: rotate(45deg)
 
+  /* позиционирование описаний и треугольников */
   &:nth-child(4n + 2) &__description
     left: -100%
-    &:before,
-    &:after
+  &:nth-child(4n + 2) &__text 
+    &:before
       left: 25% + $shift_triangle
 
   &:nth-child(4n + 3) &__description
     left: -200%
-    &:before,
-    &:after
+  &:nth-child(4n + 3) &__text
+    &:before
       left: 50% +  $shift_triangle
 
   &:nth-child(4n + 4) &__description
     left: -300%
-    &:before,
-    &:after
+  &:nth-child(4n + 4) &__text
+    &:before
       left: 75% +  $shift_triangle
 
 .offer
@@ -351,6 +373,8 @@ body
 
     &--1 &__header
       font-size: 50px
+      .rub
+        margin-left: 3px
     &--2 &__header
       font-size: 35px
     &--3 &__header
@@ -372,6 +396,8 @@ body
       height: 66px
     &__submit
       top: 10px
+    &__info
+      transform: translateY(-44px)
 
   .benefit
     &__title
@@ -400,6 +426,8 @@ body
 
     &__content
       min-width: 94%
+    &--1 &__content
+      padding-bottom: 120px
     &--2 &__content
       padding-bottom: 65px
     &--3 &__content
@@ -425,6 +453,8 @@ body
       font-size: 27px
       span
         letter-spacing: 0
+      .rub
+        margin-left: 2px
     &--2 &__header
       padding: 0 20px
       font-size: 20px
@@ -440,6 +470,9 @@ body
       line-height: 43px
     &--2 &__cta
       margin-top: 13px
+
+    &__arrow
+      display: none
 
     &__copyright
       margin-top: 37px
@@ -457,6 +490,7 @@ body
       padding: 10px 19px
     &__info
       letter-spacing: 0
+      transform: translateY(-40px)
 
   .benefits
     margin-top: 50px
@@ -470,14 +504,16 @@ body
     &__description
       display: block
       left: 0!important
-      margin: 23px auto 0
+      margin: 0 auto
       width: 100%
       max-width: 500px
-      &:before,
-      &:after
-        display: none
+      max-height: none!important
+      opacity: 1
     &__text
-      padding: 16px 20px 20px
+      div
+        padding: 16px 20px 20px
+      &:before
+        display: none
 
   .offer
     position: relative
