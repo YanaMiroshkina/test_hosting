@@ -55,12 +55,12 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpe?g|gif)$/,
         include: [
           path.resolve(__dirname, 'src/img/')
         ],
         use: [
-          'file-loader?name=./src/img/[name].[ext]'
+          'file-loader?name=[path][name].[ext]'
         ]
       },
       {

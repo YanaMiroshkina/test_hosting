@@ -124,11 +124,11 @@
   btn_check_domain = html.querySelector("[data-js-btn='check-domain']"),
   el_domain_info = html.querySelector('[data-js-domain-info]'),
   el_domain_data = html.querySelector('[data-js-domain-data]'),
-  regexp_domain = /^(([a-zа-яё0-9]+\.)*[a-zа-яё0-9]+\.[a-zа-яё]+)$/;
+  regexp_domain = /^((?:https?:\/\/)?(?:((?:[а-яё0-9]+(?:[_-](?=[а-яё0-9]))?[а-яё0-9]+\.)+[а-яё]{2,6})|((?:[a-z0-9]+(?:[_-](?=[a-z0-9]))?[a-z0-9]+\.)+[a-z]{2,6})))$/;
 
   form_check_domain.onsubmit = function(e) {
     e.preventDefault();
-
+    // trim
     var domain = el_domain_input.value.toLowerCase(),
     data = '',
     xhr = new XMLHttpRequest();
